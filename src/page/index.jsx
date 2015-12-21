@@ -4,37 +4,42 @@ var ReactDom = require('react-dom');
 var AddrAction = require('../actions/AddrAction');
 var AddrStore = require('../stores/AddrStore');
 
+var AddrList = require('../components/AddrList.react');
+var Header = require('../components/Header.react');
+var Loading = require('../components/Loading.react');
+
 function getAddrState() {
  return {
 	 title: '我的地址',
-	 addrs: AddrStore.getAll()
+	 addrs: AddrStore.getAll(),
+   status: 'loading'
  };
 }
 
-var AddrList = React.createClass({
+var App = React.createClass({
 	getInitialState: function(){
 		// 获取初始化数据
 		return getAddrState();
 	},
 	render: function(){
 		var title = this.state.title;
-		var addrs = this.state.addrs.map(function(addr){
-			return (
-				<li key={addr.id}>
-					<a>{addr.addrName}<br/>{addr.name} {addr.phone}</a>
-				</li>
-			);
-		});
+		var addrs = this.state.addrs;
+
+    var status = this.state.status;
+
+    var content;
+    if(status === 'loading') {
+      content = <Loading />;
+    }
+    if(status === 'loaded') {
+      content = <AddrList addrs={addrs} />
+    }
+
 		return(
 			// 每个组件只能有一个容器，不能多个同级的容器
 			<div className="list-wrap">
-				<div className="titlebar">
-					<a href="javascript:void(0);"></a>
-					<span>{title}</span>
-				</div>
-				<ul className="editlist">
-					{addrs}
-				</ul>
+        <Header title={title} />
+        {content}
 			</div>
 		);
 	},
@@ -50,7 +55,10 @@ var AddrList = React.createClass({
 	  AddrStore.addLoadedListener(this._onLoaded);
 	},
 	 _onLoaded: function() {
-		 this.setState(getAddrState());
+		 this.setState({
+       addrs: AddrStore.getAll(),
+       status: 'loaded'
+     });
 	 }
 });
-ReactDom.render(<AddrList />, document.getElementById('content'))
+ReactDom.render(<App />, document.getElementById('content'))
