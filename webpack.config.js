@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/page/index.jsx',
+    entry: './src/page/example.jsx',
     output: {
         filename: 'bundle.js', //this is the default name, so you can skip it
         //at this directory our bundle file will be available
@@ -23,4 +23,4 @@ module.exports = {
     resolve: {
         extensions: ['', '.js', '.jsx']
     }
-}
+};

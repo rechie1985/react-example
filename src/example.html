@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Property Grid</title>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui">
+    <meta name=format-detection content="telephone=no">
+    <!-- include react -->
+    <script src="../node_modules/react/dist/react-with-addons.js"></script>
+    <style>
+      body{
+        margin:0;
+        padding:0;
+      }
+      ul{
+        list-style-type:none;
+        margin:0;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        -webkit-padding-start: 0;
+        margin-top:10px;
+      }
+      header{
+        width:100%;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-bottom:1px solid #222;
+        margin-bottom:10px;
+      }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <!-- this is where the root react component will get rendered -->
+    </div>
+    <script type="text/javascript" src="../node_modules/zepto/zepto.min.js"></script>
+    <!-- include the webpack-dev-server script so our scripts get reloaded when we make a change -->
+    <!-- we'll run the webpack dev server on port 8090, so make sure it is correct -->
+    <script src="http://localhost:8090/webpack-dev-server.js"></script>
+    <!-- include the bundle that contains all our scripts, produced by webpack -->
+    <!-- the bundle is served by the webpack-dev-server, so serve it also from localhost:8090 -->
+    <script type="text/javascript" src="http://localhost:8090/assets/bundle.js"></script>
+</body>
+</html>

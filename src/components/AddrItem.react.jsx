@@ -3,8 +3,8 @@ var AddrItem = React.createClass({
   render: function() {
     var addr = this.props.addr;
     return (
-      <li key={addr.id}>
-        <a>{addr.addrName}<br/>{addr.name} {addr.phone}</a>
+      <li>
+        <a>{addr.addrName}</a>
       </li>
     );
   }

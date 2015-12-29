@@ -15,7 +15,7 @@ var AddrList = React.createClass({
       <ul className="editlist">
         {addrs}
       </ul>
-    )
+    );
   }
 });
 
