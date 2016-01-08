@@ -25,22 +25,21 @@ var AddrList = React.createClass({
     };
   },
   changeHandler: function(e) {
-    var value = e.target.value;
-    this.setState({
-      newValue: value
-    });
+    console.log('changeHandler');
+    // var value = e.target.value;
+    var value = this.refs.valInput.value;
+    console.log(value);
   },
   clickHandler: function(e) {
     var addrs = this.state.addrs;
-    addrs.push(this.state.newValue);
+    var newValue = this.refs.valInput.value;
+    addrs.push(newValue);
     // 更新addrs
     this.setState({
       addrs: addrs
     });
-    // 清空
-    this.setState({
-      newValue: ''
-    });
+    // 清空输入框
+    this.refs.valInput.value = '';
   },
 	render: function(){
     var children = this.state.addrs.map(function(addrName, index) {
@@ -52,7 +51,7 @@ var AddrList = React.createClass({
 			<div>
         <header>{this.props.title}</header>
 				<div>
-					<input type="text" onChange={this.changeHandler} value={this.state.newValue}/>
+					<input type="text" ref="valInput" onChange={this.changeHandler}/>
 					<button onClick={this.clickHandler}>{this.props.btnText}</button>
 				</div>
 				<ul>

@@ -30,6 +30,7 @@ var AddrStore = assign({}, EventEmitter.prototype, {
   },
 
   dispatcherIndex: AppDispatcher.register(function(action) {
+    console.log('dispatcherIndex action: ' , action);
     var addrs;
     // 根据不同的actionType进行处理
     switch(action.actionType) {
