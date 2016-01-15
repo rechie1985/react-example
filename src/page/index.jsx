@@ -10,9 +10,9 @@ var Loading = require('../components/Loading.react');
 
 function getAddrState() {
  return {
-	 title: '我的地址',
-	 addrs: AddrStore.getAll(),
-   status: 'loading'
+	title: '我的地址',
+	addrs: AddrStore.getAll(),
+    status: 'loading'
  };
 }
 
@@ -25,21 +25,21 @@ var App = React.createClass({
 		var title = this.state.title;
 		var addrs = this.state.addrs;
 
-    var status = this.state.status;
+	    var status = this.state.status;
 
-    var content;
-    if(status === 'loading') {
-      content = <Loading />;
-    }
-    if(status === 'loaded') {
-      content = <AddrList addrs={addrs} />
-    }
+	    var content;
+	    if(status === 'loading') {
+	      content = <Loading />;
+	    }
+	    if(status === 'loaded') {
+	      content = <AddrList addrs={addrs} />
+	    }
 
 		return(
 			// 每个组件只能有一个容器，不能多个同级的容器
 			<div className="list-wrap">
-        <Header title={title} />
-        {content}
+	        	<Header title={title} />
+	        	{content}
 			</div>
 		);
 	},
@@ -52,13 +52,13 @@ var App = React.createClass({
 		// this.setState(addrs);
 		AddrAction.loadFromServer();
 		// 绑定加载完成后的事件
-	  AddrStore.addLoadedListener(this._onLoaded);
+	    AddrStore.addLoadedListener(this._onLoaded);
 	},
 	 _onLoaded: function() {
-		 this.setState({
-       addrs: AddrStore.getAll(),
-       status: 'loaded'
-     });
+		this.setState({
+	       addrs: AddrStore.getAll(),
+	       status: 'loaded'
+	    });
 	 }
 });
 ReactDom.render(<App />, document.getElementById('content'))
